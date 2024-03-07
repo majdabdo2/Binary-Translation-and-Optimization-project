@@ -1,22 +1,9 @@
 # Binary-Translation-and-Optimization-project
-optimization on a given code using function inlining and code recording.
+optimization on a given code using function inlining and code reordering.
 
-* i opened a new directory in $PIN_TOOL_DIR/source/tools/ named homeworks
+we were asked to write a Pintool in JIT mode and in Probe mode,when applied with the “-prof” knob, the pintool should preferably count executed instructions in the
+MainExecutable image only and print them and when applied with the “-opt” knob, the pintool should run in probe mode and apply Function Inlining of
+functions that have a single Hot call site, followed by Code Reordering:
 
-compile:	
-	1. Copy the files: project.cpp,rtn-translation.cpp,makefile and makefile.rules into $PIN_TOOL_DIR/source/tools/homeworks			
-	2. cd $PIN_TOOL_DIR/source/tools/homeworks
-	3. make project.test
-// after compiling there will be $PIN_TOOL_DIR/source/tools/homeworks/obj-intel64/ directory containing project.so.
-
-
-
-run:
-	1. copy bzip2 and input-long.txt to $PIN_TOOL_DIR/source/tools/homeworks/
-	2. run bzip2 test:
-		$PIN_TOOL_DIR/pin -t ./obj-intel64/project.so -prof -- ./bzip2 -k -f input-long.txt
-
-*we used 2 files "reorder-bbl-count.csv" and "inilne-rtn-count.csv" for collecting  profiling information  
-
-		$PIN_TOOL_DIR/pin -t ./obj-intel64/project.so -opt -- ./bzip2 -k -f input-long.txt
-		$PIN_TOOL_DIR/pin -t ./obj-intel64/project.so -opt -no_tc_commit -- ./bzip2 -k -f input-long.txt
+so we started with collecting information(profiling) for the inlining part and for the code reordering(info on the basic blocks)
+and then for the optimization part we commited the inlined functions in the desired place in the routine and commited the bbls of the routine in the desired order.
